@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="common/layout :: layout(~{::title}, ~{::link}, ~{::script}, ~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Edit</title>
+    <link/>
+</head>
+<body>
+    <section>
+        <form  th:action="@{/student/save/{mode}(mode=${mode})}" th:object="${student}" method="post">
+            <div class="form-group d-none">
+                <label for="student_id">Student Id:</label>
+                <input type="text" id="student_id" class="form-control" th:field="*{studentId}">
+            </div>
+            <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" id="name" class="form-control" th:field="*{studentName}"
+                th:readonly="${mode == 'delete'}">
+            </div>
+            <div class="form-group">
+                <label for="avg_score">Average Score:</label>
+                <input type="number" id="avg_score" class="form-control" th:field="*{averageScore}"
+                th:readonly="${mode == 'delete'}">
+            </div>
+            <div class="form-group">
+                <label for="class_rank">Class Rank:</label>
+                <input type="number" id="class_rank" class="form-control" th:field="*{classRank}"
+                th:readonly="${mode == 'delete'}">
+            </div>
+            <button class="btn btn-primary" th:switch="${mode}" type="submit">
+                <span th:case="'add'">Add</span>
+                <span th:case="'edit'">Edit</span>
+                <span th:case="'delete'">Delete</span>
+                <span th:case="*">Save</span>
+            </button>
+            <a class="btn btn-danger" th:href="@{/}">Back</a>
+        </form>
+    </section>
+    <script/>
+</body>
+</html>

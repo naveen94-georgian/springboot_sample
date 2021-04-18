@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en" th:replace="common/layout :: layout(~{::title}, ~{::link}, ~{::script}, ~{::section})">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student</title>
+    <link/>
+</head>
+<body>
+    <section>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-dark d-flex justify-content-between">
+                <span>Name</span>
+                <span>Average Score</span>
+                <span>Class Rank</span>
+                <a th:href="@{/student/add}">Add</a>
+            </li>
+            <li class="list-group-item d-flex justify-content-between" th:each="student: ${students}">
+                <span th:text="${student.studentName}"></span>
+                <span th:text="${student.averageScore}"></span>
+                <span th:text="${student.classRank}"></span>
+                <span>
+                    <a th:href="@{/student/edit/{id}(id=${student.studentId})}">Edit</a> |
+                    <a th:href="@{/student/delete/{id}(id=${student.studentId})}">Delete</a>
+                </span>
+            </li>
+        </ul>
+    </section>
+
+    <script/>
+    
+</body>
+</html>
